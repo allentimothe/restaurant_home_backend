@@ -8,7 +8,7 @@ async function index(req, res) {
       res.status(200).json(clockins); //  send JSON data as an HTTP response
     } catch (error) {
       console.log(error);
-      res.status(400).json({ error: 'something went wrong' });
+      res.status(400).json({ error: 'something went wrong' }); // res.status(400)<<--- "400" set the error code.
     }
     }
 
@@ -17,6 +17,7 @@ async function index(req, res) {
       try {
           const clockin = await Clockin.create(req.body);
           req.query.uid = clockin.uid;
+          //res.status(201).json({ msg: 'Punch Logged Successfully' });
           index(req, res);
       } catch (error) {
           res.status(401).json({ error: 'something went wrong' });
